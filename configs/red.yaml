@@ -1,0 +1,36 @@
+learning_rate: 0.0001
+batch_size: 64
+PIXELS_PER_METER: 4
+PIXELS_AHEAD_VEHICLE: 120
+context: 5
+num_samples: 1000
+img_size: 64
+patch_size: 8
+num_contour_points: 50
+
+query_dim: 256
+mha_heads: 2
+num_tr_layers: 4
+time_embedding: 256
+attention_emb_dim: 256
+
+backbone: 'resnet18'
+# backbone: 'vit'
+# backbone: 'mobilenet'
+# change this for the unet
+block_out_channels: [32, 32, 32, 32]
+down_block_types: ["DownBlock2D", "DownBlock2D", "DownBlock2D", "AttnDownBlock2D"]
+# down_block_types: ["DownBlock2D"]
+up_block_types: ["UpBlock2D", "UpBlock2D", "UpBlock2D", "UpBlock2D"]
+layers_per_block: 1
+
+num_train_timesteps: 150
+beta_start: 0.0001
+beta_end: 0.1
+beta_schedule: "squaredcos_cap_v2"
+
+dataset_type: idd
+# dataset_config: "/ssd_scratch/cvit/keshav/nuscenes" # for nuscenes
+dataset_config : "/ssd_scratch/cvit/keshav/IDD_Detection/" # for carla
+# ckpt_dir: '/ssd_scratch/cvit/keshav/fs_ckpts'
+ckpt_dir: '/ssd_scratch/cvit/keshav/fs_ckpts_debug'
